@@ -3,7 +3,9 @@ import {
     Text 
 } from "react-native";
 
-export function Chair(): JSX.Element {
+export function Chair(props: any): JSX.Element {
+    // extract props/parameters passed to this compoent
+    const { theme } = props;
     // useState is a Hook - A hook is something that lets you hook into React state and lifecycles
     const [isBig, setIsBig] = useState(false);
 
@@ -33,5 +35,5 @@ export function Chair(): JSX.Element {
     const changeSizeState = () => {
         setIsBig(currentSizeState => !currentSizeState)
     }
-    return <Text style={{fontSize: isBig ? 24 : 14}} onPress={changeSizeState}>Chair Component</Text>
+    return <Text style={{fontSize: isBig ? 24 : 14, color: theme == 'dark' ? 'grey' : 'purple'}} onPress={changeSizeState}>Chair Component</Text>
 }

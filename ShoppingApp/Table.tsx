@@ -10,7 +10,6 @@ export class Table extends React.PureComponent<{}, {isBig: boolean}, any> {
     }
 
     changeSizeState () {
-        console.log(this instanceof Table);
         this.setState({isBig: !this.state.isBig})
     }
 

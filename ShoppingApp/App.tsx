@@ -4,12 +4,13 @@ import {
   View,
 } from 'react-native';
 import Splash from './src/screens/auth/Splash';
+import Singup from './src/screens/auth/Signup';
 
 function App(): JSX.Element {
   return (
     <SafeAreaView>
       <View>
-        <Splash/>
+        <Singup/>
       </View>
     </SafeAreaView>
   );

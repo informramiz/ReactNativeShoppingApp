@@ -11,7 +11,7 @@ const Singup = () => {
             <View style={styles.inputFieldsContainer}>
                 <Input label={'Name'} placeholder={"Jhon Doe"}/>
                 <Input label={'Email'} placeholder={"example@gmail.com"}/>
-                <Input label={'Password'} placeholder={"example@gmail.com"}/>
+                <Input label={'Password'} placeholder={"******"} isPassword={true}/>
             </View>
         </View>
     )

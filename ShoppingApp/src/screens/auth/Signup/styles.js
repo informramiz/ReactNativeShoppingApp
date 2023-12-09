@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     },
     inputFieldsContainer: {
         rowGap: 20
+    },
+    agreeRow: {
+        marginTop: 21,
     }
 });
 

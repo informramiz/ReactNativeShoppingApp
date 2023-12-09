@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import AuthHeader from "../../../components/AuthHeader";
-import styles from "./styles";
 import Input from "../../../components/Input";
 import CheckBox from "../../../components/Checkbox";
 import Button from "../../../components/Button";
 import Separator from "../../../components/Separator";
 import GoogleLogin from "../../../components/GoogleLogin";
+import styles from "./styles";
 
 const SignUp = () => {
     const [checked, setChecked] = useState(false);

@@ -35,4 +35,4 @@ const Singup = () => {
     )
 }
 
-export default Singup;
+export default React.memo(Singup);

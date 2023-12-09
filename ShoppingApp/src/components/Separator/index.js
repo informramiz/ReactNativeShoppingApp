@@ -12,4 +12,4 @@ const Separator = ({ text, style }) => {
     )
 }
 
-export default Separator;
+export default React.memo(Separator);

@@ -3,9 +3,9 @@ import {
   SafeAreaView,
   View,
 } from 'react-native';
-import Singup from './src/screens/auth/Signup';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Config from "react-native-config";
+import Signin from './src/screens/auth/SignIn';
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -21,7 +21,8 @@ function App(): JSX.Element {
   return (
     <SafeAreaView>
       <View>
-        <Singup/>
+        <Signin />
+
       </View>
     </SafeAreaView>
   );

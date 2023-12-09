@@ -8,7 +8,7 @@ import Button from "../../../components/Button";
 import Separator from "../../../components/Separator";
 import GoogleLogin from "../../../components/GoogleLogin";
 
-const Singup = () => {
+const SignUp = () => {
     const [checked, setChecked] = useState(false);
     const onSignupPress = () => {
 
@@ -46,4 +46,4 @@ const Singup = () => {
     )
 }
 
-export default React.memo(Singup);
+export default React.memo(SignUp);

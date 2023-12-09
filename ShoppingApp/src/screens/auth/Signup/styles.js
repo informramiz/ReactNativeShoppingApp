@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../../utils/colors";
 
 const styles = StyleSheet.create({
     container: {
@@ -9,6 +10,17 @@ const styles = StyleSheet.create({
     },
     agreeRow: {
         marginTop: 21,
+        flexDirection: 'row',
+        alignItems: 'center',
+
+    },
+    agreeText: {
+        color: colors.blue,
+        fontSize: 14,
+        marginStart: 13
+    },
+    agreeTextBold: {
+        fontWeight: 'bold'
     }
 });
 

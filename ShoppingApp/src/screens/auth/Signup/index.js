@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import AuthHeader from "../../../components/AuthHeader";
 import styles from "./styles";
 import Input from "../../../components/Input";
@@ -18,6 +18,9 @@ const Singup = () => {
 
             <View style={styles.agreeRow}>
                 <CheckBox checked={checked} onCheck={setChecked}/>
+                <Text style={styles.agreeText}>
+                    I agree with <Text style={styles.agreeTextBold}>Terms</Text> & <Text style={styles.agreeTextBold}>Privacy</Text>
+                </Text>
             </View>
         </View>
     )

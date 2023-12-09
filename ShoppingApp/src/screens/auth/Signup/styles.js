@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
     },
     agreeTextBold: {
         fontWeight: 'bold'
+    },
+    SignupButton: {
+        marginTop: 25
     }
 });
 

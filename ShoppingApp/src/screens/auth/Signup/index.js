@@ -4,9 +4,14 @@ import AuthHeader from "../../../components/AuthHeader";
 import styles from "./styles";
 import Input from "../../../components/Input";
 import CheckBox from "../../../components/Checkbox";
+import Button from "../../../components/Button";
 
 const Singup = () => {
     const [checked, setChecked] = useState(false);
+    const onSignupPress = () => {
+
+    }
+
     return (
         <View style={styles.container}>
             <AuthHeader title={"Sign Up"}/>
@@ -22,6 +27,8 @@ const Singup = () => {
                     I agree with <Text style={styles.agreeTextBold}>Terms</Text> & <Text style={styles.agreeTextBold}>Privacy</Text>
                 </Text>
             </View>
+
+            <Button title={'Sign Up'} onPress={onSignupPress} style={styles.SignupButton}/>
         </View>
     )
 }

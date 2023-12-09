@@ -6,6 +6,7 @@ import Input from "../../../components/Input";
 import CheckBox from "../../../components/Checkbox";
 import Button from "../../../components/Button";
 import Separator from "../../../components/Separator";
+import GoogleLogin from "../../../components/GoogleLogin";
 
 const Singup = () => {
     const [checked, setChecked] = useState(false);
@@ -29,8 +30,9 @@ const Singup = () => {
                 </Text>
             </View>
 
-            <Button title={'Sign Up'} onPress={onSignupPress} style={styles.SignupButton} />
+            <Button title={'Sign Up'} onPress={onSignupPress} style={styles.signupButton} />
             <Separator text={'Or sign up with'} style={styles.separator} />
+            <GoogleLogin style={styles.googleLogin}/>
         </View>
     )
 }

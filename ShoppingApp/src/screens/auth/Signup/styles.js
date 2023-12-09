@@ -22,11 +22,14 @@ const styles = StyleSheet.create({
     agreeTextBold: {
         fontWeight: 'bold'
     },
-    SignupButton: {
+    signupButton: {
         marginTop: 25
     },
     separator: {
         marginTop: 38,
+    },
+    googleLogin: {
+        marginTop: 20
     }
 });
 

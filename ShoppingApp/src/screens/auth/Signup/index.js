@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import AuthHeader from "../../../components/AuthHeader";
 import styles from "./styles";
 import Input from "../../../components/Input";
@@ -15,7 +15,7 @@ const Singup = () => {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <AuthHeader title={"Sign Up"}/>
             <View style={styles.inputFieldsContainer}>
                 <Input label={'Name'} placeholder={"Jhon Doe"}/>
@@ -33,7 +33,7 @@ const Singup = () => {
             <Button title={'Sign Up'} onPress={onSignupPress} style={styles.signupButton} />
             <Separator text={'Or sign up with'} style={styles.separator} />
             <GoogleLogin style={styles.googleLogin}/>
-        </View>
+        </ScrollView>
     )
 }
 

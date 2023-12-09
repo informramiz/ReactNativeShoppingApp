@@ -3,7 +3,7 @@ import { colors } from "../../../utils/colors";
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 24,
+        marginHorizontal: 24
     },
     inputFieldsContainer: {
         rowGap: 20

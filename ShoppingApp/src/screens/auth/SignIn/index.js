@@ -7,6 +7,8 @@ import Button from "../../../components/Button";
 import Separator from "../../../components/Separator";
 import GoogleLogin from "../../../components/GoogleLogin";
 import { screens } from "../../screens";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 
 const SignIn = ({ navigation }) => {
     const onSignInPress = () => {
@@ -22,7 +24,7 @@ const SignIn = ({ navigation }) => {
     }
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
             <AuthHeader title={"Sign In"} onBackPress={onBackPress}/>
             <View style={styles.inputFieldsContainer}>
                 <Input label={'Email'} placeholder={"example@gmail.com"}/>

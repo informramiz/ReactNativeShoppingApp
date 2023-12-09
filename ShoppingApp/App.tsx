@@ -12,6 +12,7 @@ import Splash from './src/screens/auth/Splash';
 import SignUp from './src/screens/auth/SignUp';
 import { colors } from './src/utils/colors';
 import { screens } from './src/screens/screens';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,13 +40,15 @@ function App(): JSX.Element {
   }, []);
 
   return (
-      <NavigationContainer theme={navigationTheme}>
-        <Stack.Navigator>
-          <Stack.Screen name={screens.Splash} component={Splash} options={{headerShown: false}}/>
-          <Stack.Screen name={screens.SignIn} component={SignIn} options={{headerShown: false}}/>
-          <Stack.Screen name={screens.SignUp} component={SignUp} options={{headerShown: false}}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+    <SafeAreaProvider>
+        <NavigationContainer theme={navigationTheme}>
+          <Stack.Navigator>
+            <Stack.Screen name={screens.Splash} component={Splash} options={{headerShown: false}}/>
+            <Stack.Screen name={screens.SignIn} component={SignIn} options={{headerShown: false}}/>
+            <Stack.Screen name={screens.SignUp} component={SignUp} options={{headerShown: false}}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
   );
 }
 

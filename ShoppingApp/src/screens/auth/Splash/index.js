@@ -2,8 +2,16 @@ import React from "react";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { styles } from "./styles";
 import Button from "../../../components/Button";
+import { screens } from "../../screens";
 
-const Splash = () => {
+const Splash = ({ navigation }) => {
+    const onSignUpPress = () => {
+        navigation.navigate(screens.SignUp);
+    }
+
+    const onSignInPress = () => {
+        navigation.navigate(screens.SignIn);
+    }
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -14,8 +22,8 @@ const Splash = () => {
                     <Text style={styles.title}>Here!</Text>
                 </View>
 
-                <Button title="Sign Up"/>
-                <Pressable hitSlop={20}>
+                <Button title="Sign Up" onPress={onSignUpPress}/>
+                <Pressable hitSlop={20} onPress={onSignInPress}>
                     <Text style={styles.footerText}>Sign In</Text>
                 </Pressable>
             </View>

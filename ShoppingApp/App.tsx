@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Splash from './src/screens/auth/Splash';
 import SignUp from './src/screens/auth/SignUp';
 import { colors } from './src/utils/colors';
+import { screens } from './src/screens/screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,9 +41,9 @@ function App(): JSX.Element {
   return (
       <NavigationContainer theme={navigationTheme}>
         <Stack.Navigator>
-          <Stack.Screen name='Splash' component={Splash} />
-          <Stack.Screen name='Signin' component={SignIn} />
-          <Stack.Screen name='Signup' component={SignUp} />
+          <Stack.Screen name={screens.Splash} component={Splash} />
+          <Stack.Screen name={screens.SignIn} component={SignIn} />
+          <Stack.Screen name={screens.SignUp} component={SignUp} />
         </Stack.Navigator>
       </NavigationContainer>
   );

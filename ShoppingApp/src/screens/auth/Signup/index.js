@@ -7,20 +7,25 @@ import Button from "../../../components/Button";
 import Separator from "../../../components/Separator";
 import GoogleLogin from "../../../components/GoogleLogin";
 import styles from "./styles";
+import { screens } from "../../screens";
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
     const [checked, setChecked] = useState(false);
     const onSignupPress = () => {
-
+        navigation.navigate(screens.SignUp);
     }
 
     const onSignInPress = () => {
+        navigation.navigate(screens.SignIn);
+    }
 
+    const onBackPress = () => {
+        navigation.goBack();
     }
 
     return (
         <ScrollView style={styles.container}>
-            <AuthHeader title={"Sign Up"}/>
+            <AuthHeader title={"Sign Up"} onBackPress={onBackPress}/>
             <View style={styles.inputFieldsContainer}>
                 <Input label={'Name'} placeholder={"Jhon Doe"}/>
                 <Input label={'Email'} placeholder={"example@gmail.com"}/>

@@ -6,19 +6,24 @@ import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import Separator from "../../../components/Separator";
 import GoogleLogin from "../../../components/GoogleLogin";
+import { screens } from "../../screens";
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
     const onSignInPress = () => {
-
+        navigation.navigate(screens.SignIn);
     }
 
     const onSignUpPress = () => {
+        navigation.navigate(screens.SignUp);
+    }
 
+    const onBackPress = () => {
+        navigation.goBack();
     }
 
     return (
         <ScrollView style={styles.container}>
-            <AuthHeader title={"Sign In"}/>
+            <AuthHeader title={"Sign In"} onBackPress={onBackPress}/>
             <View style={styles.inputFieldsContainer}>
                 <Input label={'Email'} placeholder={"example@gmail.com"}/>
                 <Input label={'Password'} placeholder={"******"} isPassword={true}/>

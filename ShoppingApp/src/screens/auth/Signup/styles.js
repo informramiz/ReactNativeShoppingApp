@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     },
     SignupButton: {
         marginTop: 25
+    },
+    separator: {
+        marginTop: 38,
     }
 });
 

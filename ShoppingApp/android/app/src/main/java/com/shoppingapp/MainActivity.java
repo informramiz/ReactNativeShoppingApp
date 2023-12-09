@@ -18,8 +18,8 @@ public class MainActivity extends ReactActivity {
   }
 
   @Override
-  public Void onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(null)
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
   }
 
   /**

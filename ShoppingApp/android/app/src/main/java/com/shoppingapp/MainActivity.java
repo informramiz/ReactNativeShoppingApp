@@ -17,7 +17,8 @@ public class MainActivity extends ReactActivity {
     return "ShoppingApp";
   }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
+  @Override
+  public Void onCreate(savedInstanceState: Bundle?) {
     super.onCreate(null)
   }
 

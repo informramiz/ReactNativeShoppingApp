@@ -8,6 +8,7 @@ import Config from "react-native-config";
 import SignIn from './src/screens/auth/SignIn';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Splash from './src/screens/auth/Splash';
 import SignUp from './src/screens/auth/SignUp';
 import { colors } from './src/utils/colors';
@@ -15,6 +16,7 @@ import { screens } from './src/screens/screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const navigationTheme = {
   dark: false,
@@ -27,6 +29,17 @@ const navigationTheme = {
     notification: colors.blue
   }
 }
+
+const Tabs = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name='Home' component={SignIn} />
+      <Tab.Screen name='Settings' component={SignUp} />
+    </Tab.Navigator>
+  )
+}
+
+const isSignedIn = true;
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -43,9 +56,19 @@ function App(): JSX.Element {
     <SafeAreaProvider>
         <NavigationContainer theme={navigationTheme}>
           <Stack.Navigator>
-            <Stack.Screen name={screens.Splash} component={Splash} options={{headerShown: false}}/>
-            <Stack.Screen name={screens.SignIn} component={SignIn} options={{headerShown: false}}/>
-            <Stack.Screen name={screens.SignUp} component={SignUp} options={{headerShown: false}}/>
+            {isSignedIn ? (
+              <>
+                <Stack.Screen name='Tabs' component={Tabs} options={{headerShown: false}} />
+              </>
+            ) : (
+              
+              <>
+                <Stack.Screen name={screens.Splash} component={Splash} options={{ headerShown: false }} />
+                <Stack.Screen name={screens.SignIn} component={SignIn} options={{ headerShown: false }} />
+                <Stack.Screen name={screens.SignUp} component={SignUp} options={{ headerShown: false }} />
+              </>
+              
+            )}
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

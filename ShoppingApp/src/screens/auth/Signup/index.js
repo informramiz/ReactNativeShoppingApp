@@ -14,6 +14,10 @@ const Singup = () => {
 
     }
 
+    const onSignInPress = () => {
+
+    }
+
     return (
         <ScrollView style={styles.container}>
             <AuthHeader title={"Sign Up"}/>
@@ -33,6 +37,11 @@ const Singup = () => {
             <Button title={'Sign Up'} onPress={onSignupPress} style={styles.signupButton} />
             <Separator text={'Or sign up with'} style={styles.separator} />
             <GoogleLogin style={styles.googleLogin}/>
+
+            <Text style={styles.footerText}>
+                Already have an account?
+                <Text style={styles.footerLink} onPress={onSignInPress}> Sign In</Text>
+            </Text>
         </ScrollView>
     )
 }

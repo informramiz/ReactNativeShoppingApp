@@ -30,6 +30,16 @@ const styles = StyleSheet.create({
     },
     googleLogin: {
         marginTop: 20
+    },
+    footerText: {
+        marginTop: 50,
+        marginBottom: 50,
+        textAlign: 'center',
+        fontSize: 14,
+        color: colors.blue
+    },
+    footerLink: {
+        fontWeight: 'bold'
     }
 });
 

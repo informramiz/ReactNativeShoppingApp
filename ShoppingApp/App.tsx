@@ -14,6 +14,9 @@ import SignUp from './src/screens/auth/SignUp';
 import { colors } from './src/utils/colors';
 import { screens } from './src/screens/screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Home from './src/screens/app/Home';
+import Favorites from './src/screens/app/Favorites';
+import Profile from './src/screens/app/Profile';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,11 +35,12 @@ const navigationTheme = {
 
 const Tabs = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name='Home' component={SignIn} />
-      <Tab.Screen name='Settings' component={SignUp} />
+    <Tab.Navigator screenOptions={{headerShown: false}}>
+      <Tab.Screen name={screens.Home} component={Home} />
+      <Tab.Screen name={screens.Favorites} component={Favorites} />
+      <Tab.Screen name={screens.Profile} component={Profile} />
     </Tab.Navigator>
-  )
+  );
 }
 
 const isSignedIn = true;

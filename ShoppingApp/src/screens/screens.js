@@ -1,5 +1,8 @@
 export const screens = {
     Splash: 'Splash',
     SignIn: 'Signin',
-    SignUp: 'Signup'
+    SignUp: 'Signup',
+    Favorites: 'Favorites',
+    Home: 'Home',
+    Profile: 'Profile'
 }

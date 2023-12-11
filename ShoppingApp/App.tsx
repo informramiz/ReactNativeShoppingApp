@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Image,
   SafeAreaView,
-  View,
+  View
 } from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Config from "react-native-config";
 import SignIn from './src/screens/auth/SignIn';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, RouteProp, ParamListBase } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Splash from './src/screens/auth/Splash';
@@ -33,9 +34,36 @@ const navigationTheme = {
   }
 }
 
+function tabIconProvider(route: RouteProp<ParamListBase, string>, isFocused: boolean): any {
+  let iconNode = require('./src/assets/tabs/home.png')
+  switch (route.name) {
+    case screens.Home: 
+      iconNode = isFocused ? require('./src/assets/tabs/home_active.png') : require('./src/assets/tabs/home.png');
+      break;
+
+    case screens.Favorites:
+      iconNode = isFocused ? require('./src/assets/tabs/favorites_active.png') : require('./src/assets/tabs/favorites.png');
+      break;
+    
+    case screens.Profile:
+      iconNode = isFocused ? require('./src/assets/tabs/profile_active.png') : require('./src/assets/tabs/profile.png');
+      break;
+  }
+
+  return iconNode;
+}
+
 const Tabs = () => {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
+    <Tab.Navigator screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: { borderTopColor: colors.lightGrey },
+        tabBarIcon: ({ focused, color, size }) => (
+          <Image source={tabIconProvider(route, focused)} style={{width: size, height: size, tintColor: color}}/>
+        )
+      })}
+    >
       <Tab.Screen name={screens.Home} component={Home} />
       <Tab.Screen name={screens.Favorites} component={Favorites} />
       <Tab.Screen name={screens.Profile} component={Profile} />

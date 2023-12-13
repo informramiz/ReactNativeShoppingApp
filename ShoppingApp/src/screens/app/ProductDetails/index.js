@@ -5,7 +5,7 @@ import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Button from "../../../components/Button";
 
-const ProductDetails = ({ route }) => {
+const ProductDetails = ({ route, navigation }) => {
     const { product } = route?.params || {};
     const [isFavorite, setFavorite] = useState(false);
 
@@ -15,6 +15,10 @@ const ProductDetails = ({ route }) => {
 
     const onContactSellerPress = () => {
 
+    }
+
+    const onBackPress = () => {
+        navigation.goBack();
     }
     
     return (
@@ -27,6 +31,10 @@ const ProductDetails = ({ route }) => {
                     <Text style={styles.description}>{product.description} & {product.description} & {product.description}</Text>
                 </View>
             </ScrollView>
+
+            <Pressable style={styles.backIconContainer} onPress={onBackPress}>
+                <Image source={require('../../../assets/back.png')} style={styles.backIcon} />
+            </Pressable>
 
             <View style={styles.buttonsContainer}>
                     <Pressable style={styles.favoriteButton} onPress={onFavoritePress}>

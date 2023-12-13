@@ -13,6 +13,18 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: height * 0.45
     },
+    backIconContainer: {
+        padding: 10,
+        backgroundColor: colors.white,
+        position: 'absolute',
+        marginTop: 20,
+        marginStart: 20,
+        borderRadius: 6
+    },
+    backIcon: {
+        width: 20,
+        height: 20
+    },
     innerContainer: {
         
     },

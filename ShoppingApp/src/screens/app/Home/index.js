@@ -6,6 +6,8 @@ import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 import Header from "../../../components/Header";
 import CategoryBox from "../../../components/CategoryBox";
 import { categories } from "../../../data/categories";
+import ProductHomeItem from "../../../components/ProductHomeItem";
+import { products } from "../../../data/products";
 
 const Home = () => {
     const renderCategoryItem = ({item, index}) => {
@@ -16,11 +18,20 @@ const Home = () => {
         return <View style={styles.categoryListSeparator} />
     }
 
+    const renderProductItem = ({item, index}) => {
+        return <ProductHomeItem title={item?.title} price={item?.price} image={item?.image}/>
+    }
+
+    const productSeparator = ({highlighted}) => {
+        return <View style={styles.productItemSeparator} />
+    }
+
     return (
-        <ScrollView style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
+        <View style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
             <Header title={'Find All You Need'} showSearch={true}/>
             <FlatList style={styles.categoryList} ItemSeparatorComponent={categorySeparator} horizontal={true} showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryItem} keyExtractor={(item, index) => String(index)} />
-        </ScrollView>
+            <FlatList style={styles.productList} columnWrapperStyle={{justifyContent: 'space-between'}} ItemSeparatorComponent={productSeparator} numColumns={2} data={products} renderItem={renderProductItem} keyExtractor={(item, index) => String(index)} />
+        </View>
     );
 }
 

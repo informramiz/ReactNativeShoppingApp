@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FlatList, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./styles";
@@ -10,8 +10,14 @@ import ProductHomeItem from "../../../components/ProductHomeItem";
 import { products } from "../../../data/products";
 
 const Home = () => {
+    const [selectedCategoryId, setSelectedCategoryId] = useState();
+
     const renderCategoryItem = ({item, index}) => {
-        return <CategoryBox label={item?.title} image={item?.image}/>
+        return <CategoryBox 
+                label={item?.title} 
+                image={item?.image} 
+                onPress={() => setSelectedCategoryId(item?.id)} 
+                isSelected={item?.id === selectedCategoryId} />
     }
 
     const categorySeparator = ({highlighted}) => {

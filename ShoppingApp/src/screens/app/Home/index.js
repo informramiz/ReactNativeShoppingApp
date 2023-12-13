@@ -28,9 +28,9 @@ const Home = () => {
 
     return (
         <View style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
-            <Header title={'Find All You Need'} showSearch={true}/>
-            <FlatList style={styles.categoryList} ItemSeparatorComponent={categorySeparator} horizontal={true} showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryItem} keyExtractor={(item, index) => String(index)} />
-            <FlatList style={styles.productList} columnWrapperStyle={{justifyContent: 'space-between'}} ItemSeparatorComponent={productSeparator} numColumns={2} data={products} renderItem={renderProductItem} keyExtractor={(item, index) => String(index)} />
+            <Header title={'Find All You Need'} showSearch={true} style={styles.header}/>
+            <FlatList contentContainerStyle={styles.categoryListContentContainer} style={styles.categoryList} ItemSeparatorComponent={categorySeparator} horizontal={true} showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryItem} keyExtractor={(item, index) => String(index)} />
+            <FlatList contentContainerStyle={styles.productListContentContainer} style={styles.productList} columnWrapperStyle={{justifyContent: 'space-between'}} ItemSeparatorComponent={productSeparator} numColumns={2} data={products} renderItem={renderProductItem} keyExtractor={(item, index) => String(index)} />
         </View>
     );
 }

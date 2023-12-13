@@ -3,7 +3,7 @@ import { Image, Pressable, Text, View } from "react-native";
 import { styles } from "./styles";
 import Input from "../Input";
 
-const Header = ({ title, showSearch, showBack, showLogout, onBackPress, onLogoutPress }) => {
+const Header = ({ title, showSearch, showBack, showLogout, onBackPress, onLogoutPress, style }) => {
     const [showSearchInput, setShowSearchInput] = useState(false);
     const onSearchPress = () => {
         setShowSearchInput(!showSearchInput);
@@ -11,7 +11,7 @@ const Header = ({ title, showSearch, showBack, showLogout, onBackPress, onLogout
 
     return (
         <View>
-            <View style={styles.container}>
+            <View style={[styles.container, style]}>
                 { showBack ? (
                     <Pressable hitSlop={20} onPress={onBackPress}>
                         <Image style={styles.icon} source={require('../../assets/back.png')} />

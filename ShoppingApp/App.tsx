@@ -18,6 +18,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Home from './src/screens/app/Home';
 import Favorites from './src/screens/app/Favorites';
 import Profile from './src/screens/app/Profile';
+import { Screen } from 'react-native-screens';
+import ProductDetails from './src/screens/app/ProductDetails';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -90,6 +92,7 @@ function App(): JSX.Element {
             {isSignedIn ? (
               <>
                 <Stack.Screen name='Tabs' component={Tabs} options={{headerShown: false}} />
+                <Stack.Screen name={screens.ProductDetails} component={ProductDetails} options={{ headerShown: false}} />
               </>
             ) : (
               

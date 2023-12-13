@@ -8,11 +8,16 @@ import CategoryBox from "../../../components/CategoryBox";
 import { categories } from "../../../data/categories";
 import ProductHomeItem from "../../../components/ProductHomeItem";
 import { products } from "../../../data/products";
+import { screens } from "../../screens";
 
-const Home = () => {
+const Home = ({ navigation }) => {
     const [selectedCategoryId, setSelectedCategoryId] = useState();
     const [filteredProducts, setFilteredProducts] = useState(products);
     const [searchKeyword, setSearchKeyword] = useState();
+
+    const onProductPress = (product) => {
+        navigation.navigate(screens.ProductDetails);
+    }
 
     useEffect(() => {
         if (selectedCategoryId && !searchKeyword) {
@@ -41,7 +46,7 @@ const Home = () => {
     }
 
     const renderProductItem = ({item, index}) => {
-        return <ProductHomeItem title={item?.title} price={item?.price} image={item?.image}/>
+        return <ProductHomeItem title={item?.title} price={item?.price} image={item?.image} onPress={() => onProductPress(item)}/>
     }
 
     const productSeparator = ({highlighted}) => {

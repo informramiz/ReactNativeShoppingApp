@@ -4,5 +4,6 @@ export const screens = {
     SignUp: 'Signup',
     Favorites: 'Favorites',
     Home: 'Home',
-    Profile: 'Profile'
+    Profile: 'Profile',
+    ProductDetails: 'ProductDetails'
 }

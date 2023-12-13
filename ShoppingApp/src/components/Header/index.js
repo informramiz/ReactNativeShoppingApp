@@ -10,8 +10,8 @@ const Header = ({ title, showSearch, showBack, showLogout, onBackPress, onLogout
     }
 
     return (
-        <View>
-            <View style={[styles.container, style]}>
+        <View style={style}>
+            <View style={styles.container}>
                 { showBack ? (
                     <Pressable hitSlop={20} onPress={onBackPress}>
                         <Image style={styles.icon} source={require('../../assets/back.png')} />
@@ -32,7 +32,7 @@ const Header = ({ title, showSearch, showBack, showLogout, onBackPress, onLogout
             </View>
 
             { showSearchInput ? (
-                    <Input placeholder='Type your keyword...' />
+                    <Input placeholder='Type your keyword...' style={styles.input}/>
                 ) : null}
         </View>
     );

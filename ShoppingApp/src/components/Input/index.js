@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import styles from "./styles";
 
-const Input = ({ label, placeholder, isPassword }) => {
+const Input = ({ label, placeholder, isPassword, style }) => {
     const [isPasswordHidden, setIsPasswordHidden] = useState(true)
 
     const toggleEye = () => {
@@ -12,7 +12,7 @@ const Input = ({ label, placeholder, isPassword }) => {
     const eyeIcon = isPasswordHidden ? require('../../assets/eye_closed.png') : require('../../assets/eye_open.png');
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             { label !== undefined ? (<Text style={styles.label}>{label}</Text>) : null }
             <View style={styles.inputContainer}>
                 <TextInput style={styles.input} placeholder={placeholder} secureTextEntry={isPassword && isPasswordHidden}/>

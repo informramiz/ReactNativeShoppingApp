@@ -18,5 +18,8 @@ export const styles = StyleSheet.create({
     },
     space: {
         width: 24
+    },
+    input: {
+        paddingTop: 8
     }
 })

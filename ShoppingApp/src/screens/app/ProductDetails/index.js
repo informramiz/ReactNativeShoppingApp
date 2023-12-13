@@ -4,6 +4,7 @@ import { styles } from "./styles";
 import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Button from "../../../components/Button";
+import ImageCarousel from "../../../components/ImageCarousel";
 
 const ProductDetails = ({ route, navigation }) => {
     const { product } = route?.params || {};
@@ -24,11 +25,15 @@ const ProductDetails = ({ route, navigation }) => {
     return (
         <View style={[styles.container]}>
             <ScrollView style={styles.innerContainer}>
-                <Image style={styles.image} source={{ uri: product?.image }} />
+                { product?.images?.length ? (
+                    <ImageCarousel images={product.images}/> 
+                ) : ( 
+                    <Image style={styles.image} source={{ uri: product?.image }} />
+                )} 
                 <View style={styles.content}>
                     <Text style={styles.title}>{product?.title}</Text>
                     <Text style={styles.price}>{product?.price}</Text>
-                    <Text style={styles.description}>{product.description} & {product.description} & {product.description}</Text>
+                    <Text style={styles.description}>{product.description}</Text>
                 </View>
             </ScrollView>
 

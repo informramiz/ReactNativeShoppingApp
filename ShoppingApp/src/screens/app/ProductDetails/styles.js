@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.white,
         paddingTop: 30,
         paddingHorizontal: 20,
+        paddingBottom: 100
     },
     title: {
         color: colors.black,
@@ -51,7 +52,10 @@ export const styles = StyleSheet.create({
         gap: 15,
         marginTop: 10,
         marginHorizontal: 20,
-        marginBottom: 30,
+        marginBottom: 20,
+        position: 'absolute',
+        bottom: 0,
+        start: 0
     },
     favoriteButton: {
         backgroundColor: colors.blurGrey,

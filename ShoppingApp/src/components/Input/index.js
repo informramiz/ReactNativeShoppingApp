@@ -13,7 +13,7 @@ const Input = ({ label, placeholder, isPassword }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>{label}</Text>
+            { label !== undefined ? (<Text style={styles.label}>{label}</Text>) : null }
             <View style={styles.inputContainer}>
                 <TextInput style={styles.input} placeholder={placeholder} secureTextEntry={isPassword && isPasswordHidden}/>
 

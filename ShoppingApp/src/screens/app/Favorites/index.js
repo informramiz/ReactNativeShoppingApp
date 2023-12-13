@@ -6,11 +6,20 @@ import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 import Header from "../../../components/Header";
 import FavoriteItem from "../../../components/FavoriteItem";
 import { products } from "../../../data/products";
+import { screens } from "../../screens";
 
-const Favorites = () => {
+const Favorites = ({ navigation }) => {
+    const onFavoritePress = (product) => {
+        navigation.navigate(screens.ProductDetails, { product });
+    }
+
+    const onRemovePress = (products) => {
+        // TODO
+    }
+
     const renderItem = ({item}) => {
         return (
-            <FavoriteItem {...item}/>
+            <FavoriteItem {...item} onFavoritePress={() => onFavoritePress(item)} onRemovePress={onRemovePress}/>
         );
     }
 

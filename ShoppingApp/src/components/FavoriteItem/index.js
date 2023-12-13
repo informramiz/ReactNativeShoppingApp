@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import { styles } from "./styles";
 
-const FavoriteItem = ({ title, price, image, onFavoritePress, onClosePress }) => {
+const FavoriteItem = ({ title, price, image, onFavoritePress, onRemovePress }) => {
     return (
         <View style={styles.mainContainer}>
             <Pressable onPress={onFavoritePress} style={styles.innerContainer}>
@@ -15,7 +15,7 @@ const FavoriteItem = ({ title, price, image, onFavoritePress, onClosePress }) =>
 
             <View style={styles.spacer} />
 
-            <Pressable style={styles.removeIconContainer} onPress={onClosePress}>
+            <Pressable style={styles.removeIconContainer} onPress={onRemovePress}>
                 <Image source={require('../../assets/close.png')} style={styles.removeIcon} />
             </Pressable>
         </View>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./styles";
@@ -11,6 +11,15 @@ import { products } from "../../../data/products";
 
 const Home = () => {
     const [selectedCategoryId, setSelectedCategoryId] = useState();
+    const [filteredProducts, setFilteredProducts] = useState(products);
+
+    useEffect(() => {
+        if (selectedCategoryId) {
+            setFilteredProducts(products.filter((product) => product?.category == selectedCategoryId));
+        } else {
+            setFilteredProducts(products);
+        }
+    }, [selectedCategoryId]);
 
     const renderCategoryItem = ({item, index}) => {
         return <CategoryBox 
@@ -35,8 +44,24 @@ const Home = () => {
     return (
         <View style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
             <Header title={'Find All You Need'} showSearch={true} style={styles.header}/>
-            <FlatList contentContainerStyle={styles.categoryListContentContainer} style={styles.categoryList} ItemSeparatorComponent={categorySeparator} horizontal={true} showsHorizontalScrollIndicator={false} data={categories} renderItem={renderCategoryItem} keyExtractor={(item, index) => String(index)} />
-            <FlatList contentContainerStyle={styles.productListContentContainer} style={styles.productList} columnWrapperStyle={{justifyContent: 'space-between'}} ItemSeparatorComponent={productSeparator} numColumns={2} data={products} renderItem={renderProductItem} keyExtractor={(item, index) => String(index)} />
+            <FlatList 
+                contentContainerStyle={styles.categoryListContentContainer} 
+                style={styles.categoryList} 
+                ItemSeparatorComponent={categorySeparator} 
+                horizontal={true} 
+                showsHorizontalScrollIndicator={false} 
+                data={categories} 
+                renderItem={renderCategoryItem} 
+                keyExtractor={(item, index) => String(index)} />
+            <FlatList 
+                contentContainerStyle={styles.productListContentContainer} 
+                style={styles.productList} 
+                columnWrapperStyle={{justifyContent: 'space-between'}} 
+                ItemSeparatorComponent={productSeparator} 
+                numColumns={2} 
+                data={filteredProducts} 
+                renderItem={renderProductItem} 
+                keyExtractor={(item, index) => String(index)} />
         </View>
     );
 }

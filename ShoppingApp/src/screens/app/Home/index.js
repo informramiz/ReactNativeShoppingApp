@@ -16,7 +16,7 @@ const Home = ({ navigation }) => {
     const [searchKeyword, setSearchKeyword] = useState();
 
     const onProductPress = (product) => {
-        navigation.navigate(screens.ProductDetails);
+        navigation.navigate(screens.ProductDetails, { product });
     }
 
     useEffect(() => {

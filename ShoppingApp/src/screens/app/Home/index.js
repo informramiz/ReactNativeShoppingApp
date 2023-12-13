@@ -12,14 +12,21 @@ import { products } from "../../../data/products";
 const Home = () => {
     const [selectedCategoryId, setSelectedCategoryId] = useState();
     const [filteredProducts, setFilteredProducts] = useState(products);
+    const [searchKeyword, setSearchKeyword] = useState();
 
     useEffect(() => {
-        if (selectedCategoryId) {
+        if (selectedCategoryId && !searchKeyword) {
             setFilteredProducts(products.filter((product) => product?.category == selectedCategoryId));
+        }  else if (searchKeyword && !selectedCategoryId) {
+            setFilteredProducts(products.filter((product) => product?.title.toLowerCase().includes(searchKeyword.toLowerCase())));
+        } else if (selectedCategoryId && searchKeyword) {
+            setFilteredProducts(products
+                .filter((product) => product?.category == selectedCategoryId && product?.title.toLowerCase().includes(searchKeyword.toLowerCase()))
+            );
         } else {
             setFilteredProducts(products);
         }
-    }, [selectedCategoryId]);
+    }, [selectedCategoryId, searchKeyword]);
 
     const renderCategoryItem = ({item, index}) => {
         return <CategoryBox 
@@ -43,7 +50,7 @@ const Home = () => {
 
     return (
         <View style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
-            <Header title={'Find All You Need'} showSearch={true} style={styles.header}/>
+            <Header title={'Find All You Need'} showSearch={true} style={styles.header} onChangeText={(text) => setSearchKeyword(text)}/>
             <FlatList 
                 contentContainerStyle={styles.categoryListContentContainer} 
                 style={styles.categoryList} 

@@ -3,7 +3,7 @@ import { Image, Pressable, Text, View } from "react-native";
 import { styles } from "./styles";
 import Input from "../Input";
 
-const Header = ({ title, showSearch, showBack, showLogout, onBackPress, onLogoutPress, style }) => {
+const Header = ({ title, showSearch, showBack, showLogout, onBackPress, onLogoutPress, style, onChangeText }) => {
     const [showSearchInput, setShowSearchInput] = useState(false);
     const onSearchPress = () => {
         setShowSearchInput(!showSearchInput);
@@ -32,7 +32,7 @@ const Header = ({ title, showSearch, showBack, showLogout, onBackPress, onLogout
             </View>
 
             { showSearchInput ? (
-                    <Input placeholder='Type your keyword...' style={styles.input}/>
+                    <Input placeholder='Type your keyword...' style={styles.input} onChangeText={onChangeText}/>
                 ) : null}
         </View>
     );

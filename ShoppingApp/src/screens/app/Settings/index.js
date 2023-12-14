@@ -8,7 +8,7 @@ import ListItem from "../../../components/ListItem";
 import EditableBox from "../../../components/EditableBox";
 import Button from "../../../components/Button";
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
     const [isPersonalInfoEditable, setPersonalInfoEditable] = useState(false);
     const [personInfoValues, setPersonalInfoValues] = useState({name: 'Ramiz Raja', email: 'abc@xyz.com'})
 
@@ -29,9 +29,13 @@ const Settings = () => {
         Linking.openURL("https://www.google.com");
     }
 
+    const onBackPress = () => {
+        navigation.goBack();
+    }
+
     return (
         <ScrollView style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
-            <Header title={'Settings'} />
+            <Header title={'Settings'} showBack onBackPress={onBackPress}/>
             <Text style={styles.sectionTitle}>Personal Information</Text>
             <Pressable hitSlop={20} onPress={onEditPersonalInfoPress}>
                 <Image source={require('../../../assets/edit.png')} style={styles.editImage}/>

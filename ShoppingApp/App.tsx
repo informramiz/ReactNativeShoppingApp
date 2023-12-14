@@ -80,6 +80,7 @@ const ProfileStack = () => {
     <Stack.Navigator>
       <Stack.Screen name={screens.Profile} component={Profile} options={{ headerShown: false}} />
       <Stack.Screen name={screens.Settings} component={Settings} options={{ headerShown: false}} />
+      <Stack.Screen name={screens.CreateListing} component={CreateListing} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
@@ -104,7 +105,6 @@ function App(): JSX.Element {
               <>
                 <Stack.Screen name='Tabs' component={Tabs} options={{headerShown: false}} />
                 <Stack.Screen name={screens.ProductDetails} component={ProductDetails} options={{ headerShown: false}} />
-                <Stack.Screen name={screens.CreateListing} component={CreateListing} options={{ headerShown: false }} />
               </>
             ) : (
               

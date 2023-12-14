@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import { Image, Linking, Pressable, ScrollView, Text, View } from "react-native";
 import { styles } from "./styles";
 import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -15,7 +15,13 @@ const ProductDetails = ({ route, navigation }) => {
     }
 
     const onContactSellerPress = () => {
+        // Make a phone call
+        // const phone = '127282827';
+        // Linking.openURL(`tel:${phone}`);
 
+        // Send an email
+        const email = 'abc@xyz.com';
+        Linking.openURL(`mailto:${email}`);
     }
 
     const onBackPress = () => {

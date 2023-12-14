@@ -7,7 +7,9 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingHorizontal: 8,
         borderRadius: 8,
-        width: '100%'
+    },
+    innerContainer: {
+        flex: 1
     },
     title: {
         color: colors.white,

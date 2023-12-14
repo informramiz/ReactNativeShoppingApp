@@ -6,8 +6,7 @@ export const styles = StyleSheet.create({
         padding: 24,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%'
+        height: '100%',
     },
     image: {
         width: '100%',
@@ -25,6 +24,9 @@ export const styles = StyleSheet.create({
     innerTitle: {
         color: colors.orange,
         textDecorationLine: 'underline'
+    },
+    signUpButton: {
+
     },
     footerText: {
         color: colors.blue,

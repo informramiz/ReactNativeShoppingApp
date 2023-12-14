@@ -7,7 +7,7 @@ const ListItem = ({ title, subtitle, style, onPress }) => {
         <Pressable style={[styles.container, style]} onPress={onPress}>
             <View style={styles.content}>
                 <Text style={styles.title}>{title}</Text>
-                <Text style={styles.subtitle}>{subtitle}</Text>
+                {subtitle ? (<Text style={styles.subtitle}>{subtitle}</Text>) : null}
                 <Image source={require('../../assets/forward.png')} style={styles.icon}/>
             </View>
         </Pressable>

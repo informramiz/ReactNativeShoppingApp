@@ -20,6 +20,7 @@ import Favorites from './src/screens/app/Favorites';
 import Profile from './src/screens/app/Profile';
 import { Screen } from 'react-native-screens';
 import ProductDetails from './src/screens/app/ProductDetails';
+import Settings from './src/screens/app/Settings';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -47,7 +48,7 @@ function tabIconProvider(route: RouteProp<ParamListBase, string>, isFocused: boo
       iconNode = isFocused ? require('./src/assets/tabs/favorites_active.png') : require('./src/assets/tabs/favorites.png');
       break;
     
-    case screens.Profile:
+    case screens.ProfileStack:
       iconNode = isFocused ? require('./src/assets/tabs/profile_active.png') : require('./src/assets/tabs/profile.png');
       break;
   }
@@ -68,8 +69,17 @@ const Tabs = () => {
     >
       <Tab.Screen name={screens.Home} component={Home} />
       <Tab.Screen name={screens.Favorites} component={Favorites} />
-      <Tab.Screen name={screens.Profile} component={Profile} />
+      <Tab.Screen name={screens.ProfileStack} component={ProfileStack} />
     </Tab.Navigator>
+  );
+}
+
+const ProfileStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name={screens.Profile} component={Profile} options={{ headerShown: false}} />
+      <Stack.Screen name={screens.Settings} component={Settings} options={{ headerShown: false}} />
+    </Stack.Navigator>
   );
 }
 

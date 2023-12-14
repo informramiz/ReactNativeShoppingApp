@@ -6,8 +6,9 @@ import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 import Header from "../../../components/Header";
 import Button from "../../../components/Button";
 import ListItem from "../../../components/ListItem";
+import { screens } from "../../screens";
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
     const currentListings = 10;
 
     const onLogoutPress = () => {
@@ -19,7 +20,7 @@ const Profile = () => {
     }
 
     const onSettingsPress = () => {
-
+        navigation.navigate(screens.Settings);
     }
 
     return (

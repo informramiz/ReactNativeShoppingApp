@@ -16,7 +16,7 @@ const Profile = ({ navigation }) => {
     }
 
     const onMyListingsPress = () => {
-        // TODO
+        navigation.navigate(screens.CreateListing);
     }
 
     const onSettingsPress = () => {

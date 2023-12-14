@@ -7,5 +7,6 @@ export const screens = {
     Profile: 'Profile',
     ProfileStack: 'ProfileStack',
     ProductDetails: 'ProductDetails',
-    Settings: 'Settings'
+    Settings: 'Settings',
+    CreateListing: 'CreateListing'
 }

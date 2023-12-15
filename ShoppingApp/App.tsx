@@ -22,6 +22,7 @@ import { Screen } from 'react-native-screens';
 import ProductDetails from './src/screens/app/ProductDetails';
 import Settings from './src/screens/app/Settings';
 import CreateListing from './src/screens/app/CreateListing';
+import MyListings from './src/screens/app/MyListings';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -81,6 +82,7 @@ const ProfileStack = () => {
       <Stack.Screen name={screens.Profile} component={Profile} options={{ headerShown: false}} />
       <Stack.Screen name={screens.Settings} component={Settings} options={{ headerShown: false}} />
       <Stack.Screen name={screens.CreateListing} component={CreateListing} options={{ headerShown: false }} />
+      <Stack.Screen name={screens.MyListings} component={MyListings} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

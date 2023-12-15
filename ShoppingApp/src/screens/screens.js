@@ -8,5 +8,6 @@ export const screens = {
     ProfileStack: 'ProfileStack',
     ProductDetails: 'ProductDetails',
     Settings: 'Settings',
-    CreateListing: 'CreateListing'
+    CreateListing: 'CreateListing',
+    MyListings: 'MyListings'
 }

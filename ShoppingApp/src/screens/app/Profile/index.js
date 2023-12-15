@@ -16,7 +16,7 @@ const Profile = ({ navigation }) => {
     }
 
     const onMyListingsPress = () => {
-        // TODO
+        navigation.navigate(screens.MyListings);
     }
 
     const onSettingsPress = () => {
@@ -44,7 +44,7 @@ const Profile = ({ navigation }) => {
                     subtitle={'Account, FAQ, Contact'} 
                     onPress={onSettingsPress} />
             </ScrollView>
-            
+
             <Button style={styles.addNewListingButton} title={'Add a new listing'} onPress={onAddNewListingPress} />
         </View>
     );

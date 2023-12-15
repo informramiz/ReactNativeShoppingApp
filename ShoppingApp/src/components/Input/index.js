@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import styles from "./styles";
 
-const Input = ({ label, placeholder, isPassword, style, onChangeText }) => {
+const Input = ({ label, placeholder, isPassword, style, textInputStyle, onChangeText, ...props }) => {
     const [isPasswordHidden, setIsPasswordHidden] = useState(true)
 
     const toggleEye = () => {
@@ -16,10 +16,11 @@ const Input = ({ label, placeholder, isPassword, style, onChangeText }) => {
             { label !== undefined ? (<Text style={styles.label}>{label}</Text>) : null }
             <View style={styles.inputContainer}>
                 <TextInput 
-                    style={styles.input} 
+                    style={[styles.input, props.multiline ? {paddingTop: 16} : {}, textInputStyle]} 
                     placeholder={placeholder} 
                     secureTextEntry={isPassword && isPasswordHidden}
-                    onChangeText={onChangeText} />
+                    onChangeText={onChangeText}
+                    {...props} />
 
                 {isPassword ? (
                     <Pressable onPress={toggleEye}>

@@ -3,12 +3,15 @@ import { colors } from "../../../utils/colors";
 
 export const styles = StyleSheet.create({
     container: {
-        margin: 20
+        marginHorizontal: 20,
+        marginTop: 20,
+    },
+    scrollViewContentContainerStyle: {
+        paddingBottom: 60
     },
     sectionTitle: {
         fontSize: 14,
         color: colors.blue,
-        fontWeight: '500',
         marginTop: 20
     },
     imageRow: {
@@ -59,5 +62,14 @@ export const styles = StyleSheet.create({
         width: 90,
         height: 90,
         borderRadius: 8,
+    },
+    input: {
+        marginTop: 16
+    },
+    multilineInput: {
+        marginTop: 16,
+    },
+    submitButton: {
+        marginTop: 24
     }
 });

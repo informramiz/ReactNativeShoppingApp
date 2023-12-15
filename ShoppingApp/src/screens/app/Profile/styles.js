@@ -24,7 +24,10 @@ export const styles = StyleSheet.create({
         marginTop: 20,
     },
     addNewListingButton: {
-        marginHorizontal: 15
+        marginHorizontal: 15,
+        position: 'absolute',
+        bottom: 0,
+        alignSelf: 'center',
+        width: '100%'
     }
-
 });

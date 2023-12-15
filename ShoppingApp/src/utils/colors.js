@@ -8,5 +8,6 @@ export const colors = {
     darkGrey: '#3F4A59',
     blurGrey: '#F0F0F0',
     lightBlack: '#606060',
-    transparent: '00FFFFFF'
+    transparent: '00FFFFFF',
+    transparentBlack50: 'rgba(0, 0, 0, 0.5)'
 }

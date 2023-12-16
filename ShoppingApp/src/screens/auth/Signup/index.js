@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { Alert, ScrollView, Text, View } from "react-native";
 import AuthHeader from "../../../components/AuthHeader";
 import Input from "../../../components/Input";
 import CheckBox from "../../../components/Checkbox";
@@ -13,8 +13,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SignUp = ({ navigation }) => {
     const [checked, setChecked] = useState(false);
+    const [inputValues, setInputValues] = useState({});
+
     const onSignupPress = () => {
-        navigation.navigate(screens.SignUp);
+        if (inputValues?.password !== inputValues?.confirmPassword) {
+            Alert.alert('Passwords do not match');
+            return;
+        }
     }
 
     const onSignInPress = () => {
@@ -25,13 +30,18 @@ const SignUp = ({ navigation }) => {
         navigation.goBack();
     }
 
+    const onChange = (key, value) => {
+        setInputValues({...inputValues, [key]: value});
+    }
+
     return (
         <ScrollView style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
             <AuthHeader title={"Sign Up"} onBackPress={onBackPress}/>
             <View style={styles.inputFieldsContainer}>
-                <Input label={'Name'} placeholder={"Jhon Doe"}/>
-                <Input label={'Email'} placeholder={"example@gmail.com"}/>
-                <Input label={'Password'} placeholder={"******"} isPassword={true}/>
+                <Input value={inputValues.name} onChangeText={(name) => onChange('name', name)} label={'Name'} placeholder={"Jhon Doe"}/>
+                <Input value={inputValues.email} onChangeText={(email) => onChange('email', email)} label={'Email'} placeholder={"example@gmail.com"}/>
+                <Input value={inputValues.password} onChangeText={(password) => onChange('passworld', password)} label={'Password'} placeholder={"******"} isPassword={true}/>
+                <Input value={inputValues.confirmPassword} onChangeText={(password) => onChange('confirmPassworld', password)} label={'Confirm Password'} placeholder={"******"} isPassword={true}/>
             </View>
 
             <View style={styles.agreeRow}>

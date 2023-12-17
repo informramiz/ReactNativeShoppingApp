@@ -10,15 +10,43 @@ import styles from "./styles";
 import { screens } from "../../screens";
 import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { request } from "../../../utils/request";
 
 const SignUp = ({ navigation }) => {
     const [checked, setChecked] = useState(false);
     const [inputValues, setInputValues] = useState({});
 
-    const onSignupPress = () => {
-        if (inputValues?.password !== inputValues?.confirmPassword) {
-            Alert.alert('Passwords do not match');
-            return;
+    const onSignupPress = async () => {
+        try {
+            const entries = Object.entries(inputValues);
+            console.log(entries);
+
+            if (!entries.length || Object.entries(inputValues).some((item) => (!item[1] || !item[1].trim().length))) {
+                Alert.alert("All fields are require");
+                return;
+            }
+
+            if (inputValues?.password !== inputValues?.confirmPassword) {
+                Alert.alert('Passwords do not match');
+                return;
+            }
+            
+            if (!checked) {
+                Alert.alert('Please agree to the terms')
+                return;
+            }
+
+            const response = await request({
+                url: '/user/register',
+                method: 'post',
+                data: inputValues
+            });
+
+            console.log('Response: ', response);
+        } catch (error) {
+            console.log('Error: ', error.response);
+        } finally {
+
         }
     }
 
@@ -38,10 +66,10 @@ const SignUp = ({ navigation }) => {
         <ScrollView style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
             <AuthHeader title={"Sign Up"} onBackPress={onBackPress}/>
             <View style={styles.inputFieldsContainer}>
-                <Input value={inputValues.name} onChangeText={(name) => onChange('name', name)} label={'Name'} placeholder={"Jhon Doe"}/>
+                <Input value={inputValues.fullName} onChangeText={(name) => onChange('fullName', name)} label={'Name'} placeholder={"Jhon Doe"}/>
                 <Input value={inputValues.email} onChangeText={(email) => onChange('email', email)} label={'Email'} placeholder={"example@gmail.com"}/>
-                <Input value={inputValues.password} onChangeText={(password) => onChange('passworld', password)} label={'Password'} placeholder={"******"} isPassword={true}/>
-                <Input value={inputValues.confirmPassword} onChangeText={(password) => onChange('confirmPassworld', password)} label={'Confirm Password'} placeholder={"******"} isPassword={true}/>
+                <Input value={inputValues.password} onChangeText={(password) => onChange('password', password)} label={'Password'} placeholder={"******"} isPassword={true}/>
+                <Input value={inputValues.confirmPassword} onChangeText={(password) => onChange('confirmPassword', password)} label={'Confirm Password'} placeholder={"******"} isPassword={true}/>
             </View>
 
             <View style={styles.agreeRow}>

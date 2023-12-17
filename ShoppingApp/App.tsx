@@ -87,7 +87,7 @@ const ProfileStack = () => {
   );
 }
 
-const isSignedIn = true;
+const isSignedIn = false;
 
 function App(): JSX.Element {
   useEffect(() => {

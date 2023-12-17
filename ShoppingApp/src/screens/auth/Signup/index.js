@@ -19,8 +19,6 @@ const SignUp = ({ navigation }) => {
     const onSignupPress = async () => {
         try {
             const entries = Object.entries(inputValues);
-            console.log(entries);
-
             if (!entries.length || Object.entries(inputValues).some((item) => (!item[1] || !item[1].trim().length))) {
                 Alert.alert("All fields are require");
                 return;

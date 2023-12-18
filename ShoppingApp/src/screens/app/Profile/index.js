@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./styles";
@@ -8,10 +8,18 @@ import Button from "../../../components/Button";
 import ListItem from "../../../components/ListItem";
 import { screens } from "../../screens";
 import { UserContext } from "../../../../App";
+import { getProfile } from "../../../utils/API";
 
 const Profile = ({ navigation }) => {
     const currentListings = 10
     const { setUser } = useContext(UserContext);
+    const [profile, setProfile] = useState();
+
+    useEffect(() => {
+        (async () => {
+            setProfile(await getProfile());
+        })();
+    }, [])
 
     const onLogoutPress = () => {
         setUser(null);
@@ -33,8 +41,8 @@ const Profile = ({ navigation }) => {
         <View style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
             <ScrollView>
                 <Header title={'Profile'} showLogout onLogoutPress={onLogoutPress}/>
-                <Text style={styles.name}>Ramiz Raja</Text>
-                <Text style={styles.email}>hello@gmail.com</Text>
+                <Text style={styles.name}>{profile?.fullName}</Text>
+                <Text style={styles.email}>{profile?.email}</Text>
                 <ListItem 
                     style={styles.listItem} 
                     title={'My Listings'} 

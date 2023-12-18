@@ -32,3 +32,18 @@ export const login = async (values) => {
         console.log("Login failed with error: ", error.response);
     }
 }
+
+export const getProfile = async () => {
+    try {
+        const response = await request({
+            url: '/user/profile',
+            method: 'get'
+        });
+
+        if (response) {
+            return response?.data;
+        }
+    } catch (error) {
+        console.log("GetProfile failed with error: ", error.response);
+    }
+}

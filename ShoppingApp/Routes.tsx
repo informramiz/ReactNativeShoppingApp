@@ -20,6 +20,7 @@ import MyListings from './src/screens/app/MyListings';
 import { UserContext } from './App';
 import { deleteUserToken, getUserToken, setUserToken } from './src/utils/storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { addTokenToApiRequests } from './src/utils/request';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -98,6 +99,7 @@ function Routes(): JSX.Element {
     (async () => {
       if (user?.token) {
         await setUserToken(user?.token);
+        addTokenToApiRequests(user?.token);
       } else {
         await deleteUserToken();
       }

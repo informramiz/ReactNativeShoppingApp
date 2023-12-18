@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import { styles } from "./styles";
 import Input from "../Input";
 
 const Header = ({ title, showSearch, showBack, showLogout, onBackPress, onLogoutPress, style, onChangeText }) => {
     const [showSearchInput, setShowSearchInput] = useState(false);
+
+    useEffect(() => {
+        onChangeText(null);
+    }, [showSearchInput]);
+
     const onSearchPress = () => {
         setShowSearchInput(!showSearchInput);
     }

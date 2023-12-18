@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Image,
 } from 'react-native';
@@ -21,6 +21,7 @@ import { UserContext } from './App';
 import { deleteUserToken, getUserToken, setUserToken } from './src/utils/storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { addTokenToApiRequests } from './src/utils/request';
+import Welcome from './src/screens/auth/Welcome';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -87,6 +88,7 @@ function Routes(): JSX.Element {
   }
 
   const { user, setUser } = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -100,6 +102,7 @@ function Routes(): JSX.Element {
       if (user?.token) {
         await setUserToken(user?.token);
         addTokenToApiRequests(user?.token);
+        setLoading(false);
       } else {
         await deleteUserToken();
       }
@@ -109,7 +112,9 @@ function Routes(): JSX.Element {
   return (
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator>
-        { (user?.token) ? (
+        { loading ? (
+          <Stack.Screen name={screens.Welcome} component={Welcome} options={{headerShown: false}}/>
+        ) : user?.token ? (
           <>
             <Stack.Screen name='Tabs' component={Tabs} options={{headerShown: false}} />
             <Stack.Screen name={screens.ProductDetails} component={ProductDetails} options={{ headerShown: false}} />
@@ -120,7 +125,6 @@ function Routes(): JSX.Element {
             <Stack.Screen name={screens.SignIn} component={SignIn} options={{ headerShown: false }} />
             <Stack.Screen name={screens.SignUp} component={SignUp} options={{ headerShown: false }} />
           </>
-          
         )}
       </Stack.Navigator>
     </NavigationContainer>

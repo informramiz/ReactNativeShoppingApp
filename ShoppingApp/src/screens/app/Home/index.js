@@ -7,13 +7,21 @@ import Header from "../../../components/Header";
 import CategoryBox from "../../../components/CategoryBox";
 import { categories } from "../../../data/categories";
 import ProductHomeItem from "../../../components/ProductHomeItem";
-import { products } from "../../../data/products";
 import { screens } from "../../screens";
+import { getAllServices } from "../../../utils/API";
 
 const Home = ({ navigation }) => {
     const [selectedCategoryId, setSelectedCategoryId] = useState();
-    const [filteredProducts, setFilteredProducts] = useState(products);
+    const [services, setServices] = useState();
+    const [filteredProducts, setFilteredProducts] = useState(services);
     const [searchKeyword, setSearchKeyword] = useState();
+
+    useEffect(() => {
+        (async () => {
+            const data = await getAllServices();
+            setServices(data);
+        })();
+    }, []);
 
     const onProductPress = (product) => {
         navigation.navigate(screens.ProductDetails, { product });
@@ -21,17 +29,17 @@ const Home = ({ navigation }) => {
 
     useEffect(() => {
         if (selectedCategoryId && !searchKeyword) {
-            setFilteredProducts(products.filter((product) => product?.category == selectedCategoryId));
+            setFilteredProducts(services?.filter((product) => product?.category == selectedCategoryId));
         }  else if (searchKeyword && !selectedCategoryId) {
-            setFilteredProducts(products.filter((product) => product?.title.toLowerCase().includes(searchKeyword.toLowerCase())));
+            setFilteredProducts(services?.filter((product) => product?.title?.toLowerCase().includes(searchKeyword?.toLowerCase())));
         } else if (selectedCategoryId && searchKeyword) {
-            setFilteredProducts(products
-                .filter((product) => product?.category == selectedCategoryId && product?.title.toLowerCase().includes(searchKeyword.toLowerCase()))
+            setFilteredProducts(services
+                ?.filter((product) => product?.category == selectedCategoryId && product?.title?.toLowerCase()?.includes(searchKeyword?.toLowerCase()))
             );
         } else {
-            setFilteredProducts(products);
+            setFilteredProducts(services);
         }
-    }, [selectedCategoryId, searchKeyword]);
+    }, [selectedCategoryId, searchKeyword, services]);
 
     const renderCategoryItem = ({item, index}) => {
         return <CategoryBox 

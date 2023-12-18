@@ -63,3 +63,18 @@ export const editProfile = async (values) => {
         console.log("EditProfile failed with error: ", error.response);
     }
 }
+
+export const getAllServices = async () => {
+    try {
+        const response = await request({
+            url: '/services',
+            method: 'get'
+        });
+
+        if (response) {
+            return response.data;
+        }
+    } catch (error) {
+        console.log('GetAllServices failed with error: ', error.response);
+    }
+}

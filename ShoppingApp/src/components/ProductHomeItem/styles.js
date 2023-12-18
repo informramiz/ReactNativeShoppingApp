@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
     image: {
         width: (width - 64) / 2,
         height: 200,
-        borderRadius: 10
+        borderRadius: 10,
+        backgroundColor: colors.blurGrey
     },
     title: {
         color: colors.grey,

@@ -17,7 +17,6 @@ const SignIn = ({ navigation }) => {
     const [inputValues, setInputValues] = useState({});
 
     const onSignInPress = async () => {
-        console.log("Entries: ", inputValues);
         try {
             const entries = Object.entries(inputValues)
             if (!entries.length || entries.some((item) => (!item[1] || !item[1].trim().length))) {

@@ -11,7 +11,8 @@ export const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: height * 0.45
+        height: height * 0.45,
+        backgroundColor: colors.lightGrey
     },
     backIconContainer: {
         padding: 10,

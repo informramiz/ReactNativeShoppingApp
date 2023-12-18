@@ -10,7 +10,6 @@ import styles from "./styles";
 import { screens } from "../../screens";
 import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { request } from "../../../utils/request";
 import { signUp } from "../../../utils/API";
 import { UserContext } from "../../../../App";
 
@@ -37,7 +36,7 @@ const SignUp = ({ navigation }) => {
                 return;
             }
 
-            const userToken = signUp(inputValues);
+            const userToken = await signUp(inputValues);
             setUser({token: userToken});
         } catch (error) {
             console.log('Error: ', error.response);

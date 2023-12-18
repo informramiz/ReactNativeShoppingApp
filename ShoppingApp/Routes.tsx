@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   Image,
 } from 'react-native';
@@ -18,6 +18,8 @@ import Settings from './src/screens/app/Settings';
 import CreateListing from './src/screens/app/CreateListing';
 import MyListings from './src/screens/app/MyListings';
 import { UserContext } from './App';
+import { deleteUserToken, getUserToken, setUserToken } from './src/utils/storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -83,11 +85,29 @@ function Routes(): JSX.Element {
     }
   }
 
-  const {user, setUser} = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    (async () => {
+      const token = await getUserToken();
+      setUser({ token });
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (user?.token) {
+        await setUserToken(user?.token);
+      } else {
+        await deleteUserToken();
+      }
+    })();
+  }, [user]);
+
   return (
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator>
-        {user?.token ? (
+        { (user?.token) ? (
           <>
             <Stack.Screen name='Tabs' component={Tabs} options={{headerShown: false}} />
             <Stack.Screen name={screens.ProductDetails} component={ProductDetails} options={{ headerShown: false}} />

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import React, { useContext, useState } from "react";
+import { Alert, ScrollView, Text, View } from "react-native";
 import AuthHeader from "../../../components/AuthHeader";
 import styles from "./styles";
 import Input from "../../../components/Input";
@@ -9,10 +9,27 @@ import GoogleLogin from "../../../components/GoogleLogin";
 import { screens } from "../../screens";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
+import { login } from "../../../utils/API";
+import { UserContext } from "../../../../App";
 
 const SignIn = ({ navigation }) => {
-    const onSignInPress = () => {
-        navigation.navigate(screens.SignIn);
+    const {setUser} = useContext(UserContext);
+    const [inputValues, setInputValues] = useState({});
+
+    const onSignInPress = async () => {
+        console.log("Entries: ", inputValues);
+        try {
+            const entries = Object.entries(inputValues)
+            if (!entries.length || entries.some((item) => (!item[1] || !item[1].trim().length))) {
+                Alert.alert("All fields are required");
+                return;
+            }
+
+            const token = await login(inputValues);
+            setUser({ token });
+        } catch (error) {
+            console.log('Sign in failed with error: ', error);
+        }
     }
 
     const onSignUpPress = () => {
@@ -23,12 +40,16 @@ const SignIn = ({ navigation }) => {
         navigation.goBack();
     }
 
+    const onValueChange = (key, value) => {
+        setInputValues({ ...inputValues, [key]: value});
+    }
+
     return (
         <ScrollView style={[styles.container, safeAreaStyleProvider(useSafeAreaInsets())]}>
             <AuthHeader title={"Sign In"} onBackPress={onBackPress}/>
             <View style={styles.inputFieldsContainer}>
-                <Input label={'Email'} placeholder={"example@gmail.com"}/>
-                <Input label={'Password'} placeholder={"******"} isPassword={true}/>
+                <Input value={inputValues.email} label={'Email'} placeholder={"example@gmail.com"} onChangeText={(v) => onValueChange('email', v)}/>
+                <Input value={inputValues.password} label={'Password'} placeholder={"******"} isPassword={true} onChangeText={(v) => onValueChange('password', v)}/>
             </View>
 
 

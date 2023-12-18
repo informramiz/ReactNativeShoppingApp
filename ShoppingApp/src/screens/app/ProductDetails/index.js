@@ -39,7 +39,7 @@ const ProductDetails = ({ route, navigation }) => {
                 )} 
                 <View style={styles.content}>
                     <Text style={styles.title}>{product?.title}</Text>
-                    <Text style={styles.price}>{product?.price}</Text>
+                    <Text style={styles.price}>{product?.currency ? product?.currency : '$'} {product?.price}</Text>
                     <Text style={styles.description}>{product.description}</Text>
                 </View>
             </ScrollView>

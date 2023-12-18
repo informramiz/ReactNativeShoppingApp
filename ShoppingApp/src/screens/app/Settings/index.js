@@ -52,7 +52,7 @@ const Settings = ({ navigation }) => {
                 editable={isPersonalInfoEditable} 
                 style={styles.editableBox} 
                 onChangeText={(newValue) => onChange('email', newValue)} />
-            <Button title={'Save'} style={styles.saveButton} onPress={onSavePress}/>
+            { isPersonalInfoEditable ? <Button title={'Save'} style={styles.saveButton} onPress={onSavePress}/> : null }
 
             <Text style={[styles.sectionTitle, { marginBottom: 5}]}>Help Center</Text>
             <ListItem onPress={onListItemPress} style={styles.listItem} title={'FAQ'}/>

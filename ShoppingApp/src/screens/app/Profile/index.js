@@ -7,13 +7,13 @@ import Header from "../../../components/Header";
 import Button from "../../../components/Button";
 import ListItem from "../../../components/ListItem";
 import { screens } from "../../screens";
-import { UserContext } from "../../../../App";
+import { ProfileContext, UserContext } from "../../../../App";
 import { getProfile } from "../../../utils/API";
 
 const Profile = ({ navigation }) => {
     const currentListings = 10
     const { setUser } = useContext(UserContext);
-    const [profile, setProfile] = useState();
+    const { profile, setProfile }  = useContext(ProfileContext);
 
     useEffect(() => {
         (async () => {

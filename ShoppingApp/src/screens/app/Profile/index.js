@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./styles";
@@ -7,12 +7,14 @@ import Header from "../../../components/Header";
 import Button from "../../../components/Button";
 import ListItem from "../../../components/ListItem";
 import { screens } from "../../screens";
+import { UserContext } from "../../../../App";
 
 const Profile = ({ navigation }) => {
-    const currentListings = 10;
+    const currentListings = 10
+    const { setUser } = useContext(UserContext);
 
     const onLogoutPress = () => {
-        // TODO
+        setUser(null);
     }
 
     const onMyListingsPress = () => {

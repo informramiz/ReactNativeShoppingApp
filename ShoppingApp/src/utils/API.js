@@ -47,3 +47,19 @@ export const getProfile = async () => {
         console.log("GetProfile failed with error: ", error.response);
     }
 }
+
+export const editProfile = async (values) => {
+    try {
+        const response = await request({
+            url: '/user/profile',
+            method: 'patch',
+            data: values
+        })
+
+        if (response) {
+            return await getProfile();
+        }
+    } catch (error) {
+        console.log("EditProfile failed with error: ", error.response);
+    }
+}

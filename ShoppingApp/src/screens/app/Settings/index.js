@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Image, Linking, Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./styles";
@@ -7,17 +7,27 @@ import Header from "../../../components/Header";
 import ListItem from "../../../components/ListItem";
 import EditableBox from "../../../components/EditableBox";
 import Button from "../../../components/Button";
+import { ProfileContext } from "../../../../App";
+import { editProfile } from "../../../utils/API";
 
 const Settings = ({ navigation }) => {
     const [isPersonalInfoEditable, setPersonalInfoEditable] = useState(false);
-    const [personInfoValues, setPersonalInfoValues] = useState({name: 'Ramiz Raja', email: 'abc@xyz.com'})
+    const { profile, setProfile } = useContext(ProfileContext);
+    const [personInfoValues, setPersonalInfoValues] = useState({_id: profile?._id, fullName: profile?.fullName, email: profile?.email});
 
     const onEditPersonalInfoPress = () => {
         setPersonalInfoEditable(true);
     }
 
-    const onSavePress = () => {
-        // TODO: save personal info
+    const onSavePress = async () => {
+        const entries = Object.entries(personInfoValues);
+        if (!entries.length || entries.some((item) => (!item[1] || !item[1].trim().length))) {
+            Alert.alert("All fields are required");
+            return;
+        }
+
+        const updatedProfile = await editProfile(personInfoValues);
+        setProfile(updatedProfile);
         setPersonalInfoEditable(false)
     }
 
@@ -42,10 +52,10 @@ const Settings = ({ navigation }) => {
             </Pressable>
             <EditableBox 
                 label={'Name'} 
-                value={personInfoValues.name} 
+                value={personInfoValues.fullName} 
                 editable={isPersonalInfoEditable} 
                 style={styles.editableBox}
-                onChangeText={(newValue) => onChange('name', newValue)} />
+                onChangeText={(newValue) => onChange('fullName', newValue)} />
             <EditableBox 
                 label={'Email'} 
                 value={personInfoValues.email} 

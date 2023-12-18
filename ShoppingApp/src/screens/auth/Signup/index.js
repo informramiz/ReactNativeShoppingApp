@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Alert, ScrollView, Text, View } from "react-native";
 import AuthHeader from "../../../components/AuthHeader";
 import Input from "../../../components/Input";
@@ -11,10 +11,13 @@ import { screens } from "../../screens";
 import { safeAreaStyleProvider } from "../../../utils/safeareahelper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { request } from "../../../utils/request";
+import { signUp } from "../../../utils/API";
+import { UserContext } from "../../../../App";
 
 const SignUp = ({ navigation }) => {
     const [checked, setChecked] = useState(false);
     const [inputValues, setInputValues] = useState({});
+    const {user, setUser} = useContext(UserContext);
 
     const onSignupPress = async () => {
         try {
@@ -34,17 +37,10 @@ const SignUp = ({ navigation }) => {
                 return;
             }
 
-            const response = await request({
-                url: '/user/register',
-                method: 'post',
-                data: inputValues
-            });
-
-            console.log('Response: ', response);
+            const userToken = signUp(inputValues);
+            setUser({token: userToken});
         } catch (error) {
             console.log('Error: ', error.response);
-        } finally {
-
         }
     }
 
